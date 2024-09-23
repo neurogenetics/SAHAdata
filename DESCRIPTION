@@ -1,4 +1,4 @@
-Package: SAHA-data
+Package: SAHAdata
 Type: Package
 Title: Data for Semi-Automated Hand Annotation for Single Cell and Spatial Datasets
 Version: 0.1.0
