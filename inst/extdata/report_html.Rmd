@@ -1,0 +1,131 @@
+---
+title: "SAHA Report"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+## Summary
+
+```{r echo=FALSE}
+ann
+```
+
+
+
+
+
+```{r echo=FALSE, results = 'asis'}
+if (exists("auto", envir = .GlobalEnv)) {
+  cat("## Auto-annotation\n")
+  if ("consensus" %in% colnames(auto)) {
+    cat("#### You performed auto-annotation on this data, using both Marker-Based and Marker-Free analyses.\n")
+    cat("**This dataframe shows the agreement between the Marker-Based and Marker-Free analyses.**")
+  }
+  if ("prop" %in% colnames(auto)) {
+    cat("#### You performed auto-annotation on this data, using only Marker-Based analysis.\n")
+    cat("**This dataframe shows the best match database annotation for each query cluster, where `prop` is the
+        proportion of query cluster markers in the matched database cluster markers.**")
+  }
+  if ("best_match.1" %in% colnames(auto)) {
+    cat("#### You performed auto-annotation on this data, using only Marker-Free analysis.\n")
+    cat("**This dataframe shows the best match database annotation for each query cluster, where `best_match.1` is
+        the Pearson R value of the gene expression profiles of the query and database clusters, and a higher value
+        indicates higher gene expression correlation.**")
+  }
+}
+```
+
+```{r echo=FALSE}
+print(auto)
+```
+
+
+
+
+
+```{r echo=FALSE, results = 'asis'}
+if ("results" %in% slotNames(ann)) {
+  if ("marker_based" %in% names(ann@results)) {
+    cat("## Marker-based analysis\n")
+    cat("#### You performed marker-based analysis on this data, using the following parameters: XXXXX")
+  }
+}
+```
+
+```{r echo=FALSE, fig.width = 12, fig.height = 8, results = 'asis'}
+if ("results" %in% slotNames(ann)) {
+  if ("marker_based" %in% names(ann@results)) {
+    if ("dotplot_all" %in% names(ann@results$marker_based)) {
+      cat("**This figure shows all of the marker-based comparisons, significant or not.**\n")
+      print(ann@results$marker_based$dotplot_all)
+    }
+  }
+}
+```
+
+```{r echo=FALSE, fig.width = 12, fig.height = 8, results = 'asis'}
+if ("results" %in% slotNames(ann)) {
+  if ("marker_based" %in% names(ann@results)) {
+    if ("dotplot_sig" %in% names(ann@results$marker_based)) {
+      cat("**This figure shows all of the significant marker-based comparisons.**\n")
+      print(ann@results$marker_based$dotplot_sig)
+    }
+  }
+}
+```
+
+```{r echo=FALSE, fig.width = 12, fig.height = 8, results = 'asis'}
+if ("results" %in% slotNames(ann)) {
+  if ("marker_based" %in% names(ann@results)) {
+    if ("dotplot_best" %in% names(ann@results$marker_based)) {
+      cat("**This figure shows only the best significant marker-based match for each query cell type.**\n")
+      print(ann@results$marker_based$dotplot_best)
+    }
+  }
+}
+```
+
+```{r echo=FALSE, results = 'asis'}
+if ("results" %in% slotNames(ann)) {
+  if ("marker_based" %in% names(ann@results)) {
+    cat("*You may use other functions within SAHA's marker-based analysis, such as Investigate_MarkerBased(), to
+        determine which marker genes are driving the relationships seen in the above graphs between individual query
+        and database clusters.*")
+  }
+}
+```
+
+
+
+
+
+```{r echo=FALSE, results = 'asis'}
+if ("results" %in% slotNames(ann)) {
+  if ("marker_free" %in% names(ann@results)) {
+    cat("## Marker-free analysis\n")
+    cat("#### You performed marker-free analysis on this data, using the following parameters: XXXXX")
+  }
+}
+```
+
+```{r echo = F, fig.width = 12, fig.height = 8, results = 'asis'}
+if ("results" %in% slotNames(ann)) {
+  if ("marker_free" %in% names(ann@results)) {
+    if ("heatmap" %in% names(ann@results$marker_free)) {
+      cat("**This figure shows the correlation in expression profiles between query and database cell types.**\n")
+      print(ann@results$marker_free$heatmap)
+      cat("*You may use other functions within SAHA's marker-free analysis, such as Investigate_MarkerFree(), to
+        visualize the correlation of gene expression between individual query and database clusters.*")
+    }
+  }
+}
+```
+
+
+
+
+
+
+
+
+
