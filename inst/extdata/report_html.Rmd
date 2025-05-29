@@ -47,7 +47,6 @@ print(auto)
 if ("results" %in% slotNames(ann)) {
   if ("marker_based" %in% names(ann@results)) {
     cat("## Marker-based analysis\n")
-    cat("#### You performed marker-based analysis on this data, using the following parameters: XXXXX")
   }
 }
 ```
@@ -103,7 +102,6 @@ if ("results" %in% slotNames(ann)) {
 if ("results" %in% slotNames(ann)) {
   if ("marker_free" %in% names(ann@results)) {
     cat("## Marker-free analysis\n")
-    cat("#### You performed marker-free analysis on this data, using the following parameters: XXXXX")
   }
 }
 ```
@@ -122,10 +120,13 @@ if ("results" %in% slotNames(ann)) {
 ```
 
 
-
-
-
-
-
-
-
+```{r echo=FALSE, results = 'asis'}
+if ("params" %in% slotNames(ann)) {
+    cat("## Parameters\n")
+     if ("summary" %in% names(ann@params)) {
+    print(ann@params$summary)
+     }else{
+     cat("**To include parameters in the html report, run  `ann <- Summarize_Params(ann)` prior to Generate_SAHA_Report().**")
+  }
+}
+```
