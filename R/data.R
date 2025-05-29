@@ -436,3 +436,18 @@
 #' @examples
 #' data(ABC_meta) #will be lazy loading
 "ABC_meta"
+
+#' Data containing Allen Brain Cell Atlas Metadata required for SAHA
+#'
+#' Data contains
+#' @format A list with ...:
+#'  \describe{
+#'  \item{markers}{marker dataframe for demo object}
+#'  \item{avgexp}{avgexp dataframe for demo object}
+#'  \item{varfeat}{varfeat dataframe for demo object}
+#'  }
+#' @source {https://github.com/neurogenetics/SAHA/wiki/1-Preparing-Seurat-Object-for-SAHA}
+#'
+#' @examples
+#' data(demo_data) #will be lazy loading
+"demo_data"
