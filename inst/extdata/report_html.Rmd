@@ -124,9 +124,20 @@ if ("results" %in% slotNames(ann)) {
 if ("params" %in% slotNames(ann)) {
     cat("## Parameters\n")
      if ("summary" %in% names(ann@params)) {
-    print(ann@params$summary)
+  #  print(ann@params$summary) #not printing correctly bc asis -> split out to next chunk
      }else{
      cat("**To include parameters in the html report, run  `ann <- Summarize_Params(ann)` prior to Generate_SAHA_Report().**")
   }
 }
 ```
+
+
+```{r echo=FALSE}
+if ("params" %in% slotNames(ann)) {
+     if ("summary" %in% names(ann@params)) {
+    print(ann@params$summary)
+     }
+}
+```
+
+
