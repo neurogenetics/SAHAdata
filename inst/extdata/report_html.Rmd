@@ -2,20 +2,24 @@
 title: "SAHA Report"
 output: html_document
 date: "`r Sys.Date()`"
+params:
+  ann:  null
+  auto: null
 ---
 
 ## Summary
 
 ```{r echo=FALSE}
+ann  <- params$ann
+auto <- params$auto
+```
+
+```{r echo=FALSE}
 ann
 ```
 
-
-
-
-
 ```{r echo=FALSE, results = 'asis'}
-if (exists("auto", envir = .GlobalEnv)) {
+if (!is.null(auto)) {
   cat("## Auto-annotation\n")
   if ("consensus" %in% colnames(auto)) {
     cat("#### You performed auto-annotation on this data, using both Marker-Based and Marker-Free analyses.\n")
@@ -38,10 +42,6 @@ if (exists("auto", envir = .GlobalEnv)) {
 ```{r echo=FALSE}
 print(auto)
 ```
-
-
-
-
 
 ```{r echo=FALSE, results = 'asis'}
 if ("results" %in% slotNames(ann)) {
@@ -94,10 +94,6 @@ if ("results" %in% slotNames(ann)) {
 }
 ```
 
-
-
-
-
 ```{r echo=FALSE, results = 'asis'}
 if ("results" %in% slotNames(ann)) {
   if ("marker_free" %in% names(ann@results)) {
@@ -119,7 +115,6 @@ if ("results" %in% slotNames(ann)) {
 }
 ```
 
-
 ```{r echo=FALSE, results = 'asis'}
 if ("params" %in% slotNames(ann)) {
     cat("## Parameters\n")
@@ -129,7 +124,6 @@ if ("params" %in% slotNames(ann)) {
 }
 ```
 
-
 ```{r echo=FALSE}
 if ("params" %in% slotNames(ann)) {
      if ("summary" %in% names(ann@params)) {
@@ -137,5 +131,3 @@ if ("params" %in% slotNames(ann)) {
      }
 }
 ```
-
-
