@@ -2,9 +2,9 @@
 title: "SAHA Report"
 output: html_document
 date: "`r Sys.Date()`"
-- params:
--     ann: null
--     auto: null
+params:
+  ann: null
+  auto: null
 ---
 
 ## Summary
